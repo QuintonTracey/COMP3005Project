@@ -848,6 +848,8 @@ def insert_all_data():
 
     insert_player_data()
 
+    insert_positions_data()
+
     # #ney
     insert_matches_data()
 

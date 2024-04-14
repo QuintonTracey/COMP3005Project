@@ -158,7 +158,7 @@ def create_positions_table():
 
 def insert_positions_data():
     position_attributes = ['position_id', 'position', 'from', 'to', 'from_period', 'to_period', 'start_reason', 'end_reason']
-    insert_positions = 'INSERT INTO Positions (position_id, position_name, from_time, to_time, from_period, to_period, start_reason, end_reason, player_id) VALUES '
+    insert_positions = 'INSERT INTO Positions (position_id, position_name, from_time, to_time, from_period, to_period, start_reason, end_reason, player_id, match_id) VALUES '
     for matchid in os.listdir(url+"/lineups"):
         lineups_json = json.load(open(url+"/lineups/"+matchid, "r", encoding="utf-8"))
         for lineup in lineups_json:
@@ -172,7 +172,7 @@ def insert_positions_data():
                             insertPos += 'NULL,'    
                         else:
                             insertPos += '\'' + value + '\','    
-                    insertPos += str(player['player_id']) + ','+ str(matchid) + '),'
+                    insertPos += str(player['player_id']) + ','+ str(matchid[:-5]) + '),'
                     insert_positions += insertPos
 
     insert_positions = insert_positions[:-1] + ''
